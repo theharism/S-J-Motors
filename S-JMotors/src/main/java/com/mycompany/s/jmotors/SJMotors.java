@@ -5,6 +5,7 @@
 
 package com.mycompany.s.jmotors;
 
+import com.mycompany.s.jmotors.Login.LoginForm;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -21,7 +22,7 @@ public class SJMotors {
         Connection con = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/s&jmotors","root","Sahiwal@144");
+             con = DriverManager.getConnection("jdbc:mysql://utbm93bwuphgwrmv:KRGIZoX3Z8Jd2UL1Zcq9@bqiopsgzq9fudqmxrwzq-mysql.services.clever-cloud.com:3306/bqiopsgzq9fudqmxrwzq","utbm93bwuphgwrmv","utbm93bwuphgwrmv");
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(SJMotors.class.getName()).log(Level.SEVERE, null, ex);
         }
