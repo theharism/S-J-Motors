@@ -207,7 +207,7 @@ public class LoginForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
-    public void getConnection(Connection con)
+    public void setConnection(Connection con)
     {
         this.Logincon = con;
     }
@@ -216,6 +216,7 @@ public class LoginForm extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         OTPform otp = new OTPform();
+        otp.setConnection(Logincon);
         otp.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jLabel6MouseClicked

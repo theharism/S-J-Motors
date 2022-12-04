@@ -28,7 +28,7 @@ public class SJMotors {
         }
        
         LoginForm lf = new LoginForm();
-        lf.getConnection(con);
+        lf.setConnection(con);
         lf.setVisible(true);
     }
 }
