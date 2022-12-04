@@ -210,10 +210,9 @@ public class OTPform extends javax.swing.JFrame {
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
 
-        setVisible(false);
-
         LoginForm login = new LoginForm();
         login.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

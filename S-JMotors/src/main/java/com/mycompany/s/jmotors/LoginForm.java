@@ -4,12 +4,22 @@
  */
 package com.mycompany.s.jmotors;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author city
  */
 public class LoginForm extends javax.swing.JFrame {
 
+    Connection Logincon;
+    
     /**
      * Creates new form LoginForm
      */
@@ -148,6 +158,42 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        String query = "select username, password from vehicleowner";
+        String inputUsername = jTextField1.getText();
+        String inputPassword = jPasswordField1.getText();
+        Statement st = null;
+        boolean flag = false;
+        try {
+            st = Logincon.createStatement();
+             ResultSet rs = st.executeQuery(query);
+             while(rs.next())
+             {
+                 String username = rs.getString("username");
+                 String password = rs.getString("password");
+                 
+                 if(inputUsername.equals(username) && inputPassword.equals(password))
+                 {
+                     flag = true;
+                     break;
+                 }
+             }
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(flag)
+        {
+            VehicleOwnerHome voHome = new VehicleOwnerHome();
+            voHome.setVisible(true);
+            setVisible(false);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Incorrect username or password Entered");
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -158,13 +204,17 @@ public class LoginForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
+    public void getConnection(Connection con)
+    {
+        this.Logincon = con;
+    }
+    
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
 
-        setVisible(false);
-
         OTPform otp = new OTPform();
         otp.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_jLabel6MouseClicked
 
     /**
