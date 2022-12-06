@@ -27,6 +27,8 @@ import java.util.logging.Logger;
 public class OTPform extends javax.swing.JFrame {
 
     int OTPcode;
+    String id;
+    String outletID;
     Connection OTPcon;
     public static final String ACCOUNT_SID = "AC0ec3b133737733260916be193782bfcd";
      public static final String AUTH_TOKEN = "7755d0d9ced4266c3aa8f3693f309bc9";
@@ -249,7 +251,7 @@ public class OTPform extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 230, 420, 420));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\city\\Downloads\\hL1kMq (8).jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\theharism\\Desktop\\S-JMotors\\hL1kMq (8).jpg")); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, 705));
 
         pack();
@@ -262,19 +264,41 @@ public class OTPform extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null, "OTP Verified");
             
-            String query = "INSERT INTO `vehicleowner` VALUES (?,?,?,?)";
+            String query = "INSERT INTO `vehicleowner` VALUES (?,?,?,?,?,?,?)";
+            String query1 = "INSERT INTO `login` VALUES(?,?,?)";
+            String query2 = "DELETE FROM `unregisteredvehicleowners` WHERE id = ?";
+            
             PreparedStatement pdt;
+            PreparedStatement pdt1;
+            PreparedStatement pdt2;
+            
             try {
                 pdt = OTPcon.prepareStatement(query);
-                pdt.setString(1,jTextField1.getText());
-                pdt.setString(2,jTextField3.getText());
-                pdt.setString(3,jTextField4.getText());
-                pdt.setString(4,jTextField5.getText());
+                pdt1 = OTPcon.prepareStatement(query1);
+                pdt2 = OTPcon.prepareStatement(query2);
+                
+                pdt.setString(1,id);
+                pdt.setString(2,jTextField1.getText());
+                pdt.setString(3,jTextField3.getText());
+                pdt.setString(4,jTextField4.getText());
+                pdt.setString(5,jTextField5.getText());
+                pdt.setInt(6, 1);
+                pdt.setString(7,outletID);
+                
+                pdt1.setString(1,jTextField3.getText());
+                pdt1.setString(2,jTextField5.getText());
+                pdt1.setString(3,"V");
                 
                 pdt.executeUpdate();
+                pdt1.executeUpdate();
+                
+                pdt2.setString(1,id);
+                
+                pdt2.executeUpdate();
                 
                 VehicleOwnerHome voh = new VehicleOwnerHome();
                 voh.setVisible(true);
+                setVisible(false);
                 
             } catch (SQLException ex) {
                 Logger.getLogger(OTPform.class.getName()).log(Level.SEVERE, null, ex);
@@ -303,23 +327,26 @@ public class OTPform extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
 
-        String query = "select phoneno from unregisteredowners";
+        String query = "select id,outletID from unregisteredvehicleowners where phoneno = ?";
         String phoneno = jTextField4.getText();
-        Statement st = null;
+        PreparedStatement pdt;
         boolean flag = false;
         
         try {
-            st = OTPcon.createStatement();
-            ResultSet rs = st.executeQuery(query);
-             while(rs.next())
-             {
-                 String dbphoneno = rs.getString("phoneno");
-                 if(phoneno.equals(dbphoneno))
-                 {
-                     flag = true;
-                     break;
-                 }
-             }
+            pdt = OTPcon.prepareStatement(query);
+            
+            pdt.setString(1,phoneno);
+            
+            ResultSet rs = pdt.executeQuery();
+            
+            while(rs.next())
+            {
+                id = rs.getString("id");
+                outletID = rs.getString("outletID");
+                flag = true;
+            }
+             
+             
         } catch (SQLException ex) {
             Logger.getLogger(OTPform.class.getName()).log(Level.SEVERE, null, ex);
         }

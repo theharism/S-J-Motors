@@ -6,7 +6,7 @@ package com.mycompany.s.jmotors.VehicleOwner;
 
 /**
  *
- * @author city
+ * @author syed abdul qayyum
  */
 public class VehicleOwnerHome extends javax.swing.JFrame {
 
@@ -15,7 +15,6 @@ public class VehicleOwnerHome extends javax.swing.JFrame {
      */
     public VehicleOwnerHome() {
         initComponents();
-        
         setExtendedState(VehicleOwnerHome.MAXIMIZED_BOTH);
     }
 
@@ -28,11 +27,58 @@ public class VehicleOwnerHome extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setOpaque(false);
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("     ADMIN CONTROLS");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 16, 426, -1));
+
+        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 2, 24)); // NOI18N
+        jButton1.setText("Add User");
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 97, 211, 46));
+
+        jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 2, 24)); // NOI18N
+        jButton2.setText("Change Status");
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 185, 211, 46));
+
+        jButton3.setFont(new java.awt.Font("Segoe UI Semibold", 2, 24)); // NOI18N
+        jButton3.setText("Change Outlet");
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 272, 211, 46));
+
+        jButton4.setFont(new java.awt.Font("Segoe UI Semibold", 2, 24)); // NOI18N
+        jButton4.setText("Log Out");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 351, 211, 46));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 138, -1, 420));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\theharism\\Desktop\\hL1kMq (8).jpg")); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 710));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -60,6 +106,7 @@ public class VehicleOwnerHome extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(VehicleOwnerHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -70,5 +117,12 @@ public class VehicleOwnerHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
