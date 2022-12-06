@@ -12,9 +12,17 @@ import com.mycompany.s.jmotors.Person;
  */
 public class Staff extends Person {
     
-    String position;
-    int attendanceStatus;
+    String fmanager;
+    String ID;
+    String type;
     
     public void MarkAttendance(){};
+    public void AddStaff(String id,String Fid ,String name, String username,String password, String phoneno,String oid,String type)
+    {
+        addPerson(name,username,password,phoneno,oid);
+        this.fmanager=Fid;
+        this.type=type;
+        this.ID = id;
+    }
     
 }
