@@ -12,9 +12,24 @@ import com.mycompany.s.jmotors.Person;
  */
 public class Admin extends Person {
 
-    int adminID;
+    String adminID;
     
-    public void addPerson(){};
+    public Admin()
+    {
+        this.adminID  = "";
+    }
+    
+    public String getID()
+    {
+        return adminID;
+    }
+    
+    public void setAdmin(String adminID, String name, String username, String password, String phoneno,String outletID)
+    {
+        addPerson(name,username,password,phoneno,outletID);
+        this.adminID  = adminID;
+    }
+     
     public boolean assignWorkingSchedule(){return true;};
     public boolean addPartstoInventory(){return true;};
     public boolean transferUsers(){return true;};
