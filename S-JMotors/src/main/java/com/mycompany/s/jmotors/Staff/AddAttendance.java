@@ -4,8 +4,7 @@
  */
 package com.mycompany.s.jmotors.Staff;
 
-import com.mycompany.s.jmotors.VehicleOwner.VehicleOwnerHome;
-import com.toedter.calendar.JCalendar;
+import com.mycompany.s.jmotors.FactoryClass;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,19 +22,11 @@ import javax.swing.JOptionPane;
  */
 public class AddAttendance extends javax.swing.JFrame {
 
-    static String ID;
-    static String Name;
-    static String Username;
-    static String Phoneno;
-    static String Password;
-    static String Type;
-    static String FManagerID;
-    static String outletID;
-    
+    Staff s;
     /**
      * Creates new form AddAttendance
      */
-      Staff s;
+     
     Connection addattendance;
     
     public AddAttendance() 
@@ -54,27 +45,20 @@ public class AddAttendance extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jCalendar1 = new com.toedter.calendar.JCalendar();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Today's Date:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 370, 210, 30));
-
-        jButton1.setBackground(new java.awt.Color(0, 153, 153));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Mark Present");
+        jButton1.setBorder(null);
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -85,26 +69,41 @@ public class AddAttendance extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 570, 230, 50));
-
-        getContentPane().add(jCalendar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 300, 250, 170));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 500, 230, 50));
 
         jPanel2.setBackground(new java.awt.Color(241, 202, 186));
+        jPanel2.setOpaque(false);
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Mark Attendance");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 340, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 780, 70));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 220, 1230, 490));
 
-        jButton2.setBackground(new java.awt.Color(153, 153, 153));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jRadioButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton1.setText("Check In");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 280, -1, -1));
+
+        jRadioButton2.setBackground(new java.awt.Color(0, 0, 0));
+        jRadioButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton2.setText("Check Out");
+        getContentPane().add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 280, -1, -1));
+
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton2.setText("Back");
+        jButton2.setBorder(null);
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
@@ -130,88 +129,52 @@ public class AddAttendance extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
-       SimpleDateFormat f = new SimpleDateFormat();
-       Date d1 = null;
-       
-       try
-       {
-           d1 = f.parse(f.format(jCalendar1.getDate()));
-         //JOptionPane.showMessageDialog(null, f.format(d1));
-         JOptionPane.showMessageDialog(null, "Attendance Marked");
-       }
-       
-       catch(Exception E)
-       {
-           
-       }
-       
+        // TODO add your handling code here:       
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public void setUsername(String username)
+    public void setStaff(Staff s)
     {
-        String query = "SELECT ID,Name,Username,Phoneno,outletID,Password,Type,FManagerID FROM Staff WHERE username = ?";
-        
-        PreparedStatement pdt;
-          try {
-                pdt = addattendance.prepareStatement(query);
-                pdt.setString(1,username);
-                
-                ResultSet rs = pdt.executeQuery();
-                 
-                while(rs.next())
-                {
-                    ID = rs.getString("id");
-                    Name = rs.getString("name");
-                    Username = rs.getString("username");
-                    Phoneno = rs.getString("phoneno");
-                    Password = rs.getString("password");
-                    Type = rs.getString("Type");
-                    outletID = rs.getString("outletID");  
-                    FManagerID = rs.getString("FManagerID");
-                }
-                
-                s = new Staff();
-                s.AddStaff(ID, FManagerID, Name, username, Password, Phoneno, outletID, Type);
-                
-          } catch (SQLException ex) {
-            Logger.getLogger(VehicleOwnerHome.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        this.s = s;
     }
+    
     
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        String query2="INSERT INTO Attendance VALUES(?,?,?)";
-        SimpleDateFormat f = new SimpleDateFormat();
-       Date d1 = null;
        
-        try {
-            d1 = f.parse(f.format(jCalendar1.getDate()));
-        } catch (ParseException ex) {
-            Logger.getLogger(AddAttendance.class.getName()).log(Level.SEVERE, null, ex);
+        String status  = null;
+        boolean flag = false;
+        
+        if(jRadioButton1.isSelected())
+        {
+            status = "I";
+            flag = true;
+        }
+        if (jRadioButton2.isSelected())
+        {
+            status = "O";
+            flag = true;
+        }
+        if (jRadioButton1.isSelected() && jRadioButton2.isSelected())
+        {
+            flag = false;
         }
         
-        PreparedStatement pdt;
-          
-        try
+        if(flag)
         {
-            
-            pdt = addattendance.prepareStatement(query2);
-             
-                 
-                 pdt.setString(1,s.ID );
-                 pdt.setString(2,f.format(d1));
-                 pdt.setString(3,"P");
-                 pdt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Updated  successfully");
-            
-        } catch (SQLException ex) {
-            
+            this.s.MarkAttendance(status, addattendance);
         }
+        else
+        {
+             JOptionPane.showMessageDialog(null, "Select only One Option");
+        }
+        
+        
         
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
 
      public void addattendancecon (Connection con)
     {
@@ -256,11 +219,10 @@ public class AddAttendance extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     // End of variables declaration//GEN-END:variables
 }
