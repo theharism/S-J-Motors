@@ -5,7 +5,13 @@
 package com.mycompany.s.jmotors.Staff;
 
 import com.mycompany.s.jmotors.Login.LoginForm;
+import com.mycompany.s.jmotors.VehicleOwner.VehicleOwnerHome;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,6 +24,15 @@ public class StaffControls extends javax.swing.JFrame {
      */
     
     
+     Staff s;
+     static String ID;
+    static String Name;
+    static String Username;
+    static String Phoneno;
+    static String Password;
+    static String Type;
+    static String FManagerID;
+    static String outletID;
     
     Connection staffcontrol;
     
@@ -42,28 +57,22 @@ public class StaffControls extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jButton3.setBackground(new java.awt.Color(153, 153, 153));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Back");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 110, 46));
 
         jPanel1.setOpaque(false);
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jButton1.setText("Mark Attendance");
+        jButton1.setBorder(null);
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -77,9 +86,11 @@ public class StaffControls extends javax.swing.JFrame {
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 310, 46));
 
         jPanel2.setBackground(new java.awt.Color(241, 202, 186));
+        jPanel2.setOpaque(false);
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("STAFF CONTROLS");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -89,6 +100,7 @@ public class StaffControls extends javax.swing.JFrame {
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jButton4.setText("Sign out");
+        jButton4.setBorder(null);
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton4MouseClicked(evt);
@@ -99,15 +111,12 @@ public class StaffControls extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 310, 46));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 310, 120, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 850, 510));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\theharism\\Desktop\\S-JMotors\\hL1kMq (8).jpg")); // NOI18N
-        jLabel1.setMaximumSize(new java.awt.Dimension(800, 500));
-        jLabel1.setMinimumSize(new java.awt.Dimension(800, 500));
-        jLabel1.setPreferredSize(new java.awt.Dimension(800, 500));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 1550, 860));
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\theharism\\Desktop\\S-JMotors\\hL1kMq (8).jpg")); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 710));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -116,20 +125,49 @@ public class StaffControls extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    
+    public void setUsername(String username)
+    {
+        String query = "SELECT ID,Name,Username,Phoneno,outletID,Password,Type,FManagerID FROM Staff WHERE username = ?";
+        
+        PreparedStatement pdt;
+          try {
+                pdt = staffcontrol.prepareStatement(query);
+                pdt.setString(1,username);
+                
+                ResultSet rs = pdt.executeQuery();
+                 
+                while(rs.next())
+                {
+                    ID = rs.getString("id");
+                    Name = rs.getString("name");
+                    Username = rs.getString("username");
+                    Phoneno = rs.getString("phoneno");
+                    Password = rs.getString("password");
+                    Type = rs.getString("Type");
+                    outletID = rs.getString("outletID");  
+                    FManagerID = rs.getString("FManagerID");
+                }
+                
+                s = new Staff();
+                s.AddStaff(ID, FManagerID, Name, username, Password, Phoneno, outletID, Type);
+                
+          } catch (SQLException ex) {
+            Logger.getLogger(VehicleOwnerHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         
         AddAttendance a2 = new  AddAttendance();
         a2.addattendancecon(staffcontrol);
+        a2.setStaff(s);
         a2.setVisible(true);
         setVisible(false);
         
     }//GEN-LAST:event_jButton1MouseClicked
-
-    public void setUsername(String username)
-    {
-        
-    }
     
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
@@ -183,9 +221,8 @@ public class StaffControls extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
