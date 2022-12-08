@@ -5,7 +5,6 @@
 package com.mycompany.s.jmotors.Admin;
 
 import com.mycompany.s.jmotors.Login.LoginForm;
-import com.mycompany.s.jmotors.Person;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
