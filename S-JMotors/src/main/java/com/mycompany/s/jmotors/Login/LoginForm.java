@@ -12,7 +12,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -193,15 +192,22 @@ public void loginpagecon(Connection con)
             
         } catch (SQLException ex) {
             Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
-            Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         switch (type) {
             case "V" -> {
                 VehicleOwnerHome voHome = new VehicleOwnerHome();
                 voHome.setConnection(Logincon);
-                voHome.setVisible(true);
-                setVisible(false);
+                if(voHome.setOwnerUsername(inputUsername))
+                {
+                    voHome.setVisible(true);
+                    setVisible(false);
+                }
+                else
+                {
+                     JOptionPane.showMessageDialog(null, "Some Error has Occurred");
+                }
+                
             }
             case "S" -> {
                StaffControls staffControls = new StaffControls();

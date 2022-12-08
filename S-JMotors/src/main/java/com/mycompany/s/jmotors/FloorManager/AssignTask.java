@@ -4,25 +4,21 @@
  */
 package com.mycompany.s.jmotors.FloorManager;
 
+import com.mycompany.s.jmotors.FactoryClass;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author DELL
  */
 public class AssignTask extends javax.swing.JFrame {
-Connection assgtask;
+Connection assgtask; // connection varable //
     /**
      * Creates new form AssignTask
      */
     public AssignTask() {
         initComponents();
+        
+        setExtendedState(AssignTask.MAXIMIZED_BOTH);
     }
 
     /**
@@ -133,14 +129,13 @@ Connection assgtask;
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 750, 490));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\hL1kMq (8).jpg")); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void getassigntask(Connection con)
+    public void getassigntask(Connection con) //function  to connection pages //
     {
         this.assgtask=con;
     }
@@ -151,54 +146,28 @@ Connection assgtask;
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         
-        String query = "select Username from Staff where ID = ?";
-        String query1="UPDATE Staff SET Type = ? WHERE ID = ? ";
+        // getting input from user //
         String ID=jTextField1.getText();
         String Type=jTextField2.getText();
-        PreparedStatement pdt;
-        PreparedStatement pdt2;
-        String Username="";
         
-        try
-        {
-            
-            pdt = assgtask.prepareStatement(query);
-            pdt2=assgtask.prepareStatement(query1);
-            
-            pdt.setString(1, ID);
-            ResultSet rn=pdt.executeQuery();
-            
-           
-            while(rn.next())
-            {
-             Username=rn.getString("Username");
-            }
-            if(Username.equals(""))
-            {
-                JOptionPane.showMessageDialog(null, "Username not found");
-            }
-            else{
-                 JOptionPane.showMessageDialog(null, "Updated  successfully");
-                 pdt2.setString(1, Type);
-                 pdt2.setString(2,ID);
-                 pdt2.executeUpdate();
-            
-            }
-        jTextField1.setText("");
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(AddEmployee.class.getName()).log(Level.SEVERE, null, ex);
-        }
+          FactoryClass fc = new FactoryClass();// implementing factory method design pattern //
         
+        FloorManager addemployee = fc.getFloorManger();// factory class returning floor manager id //
+        
+        addemployee.manageStaff(ID,Type,assgtask); // calling class function to assign ytask to the employee//
+   
+
+        jTextField1.setText(""); // removing user input from the textbox//
         
     }//GEN-LAST:event_jButton1MouseClicked
 
+    //funtion to go back to the hone page //
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
-        FMControls ass = new FMControls();
-        ass.getfmcontrol(assgtask);
-        ass.setVisible(true);
-        setVisible(false);
+        FMControls ass = new FMControls();  //jis page pr jana h//
+        ass.getfmcontrol(assgtask);  
+        ass.setVisible(true);  
+        setVisible(false); //present page blank //
         
     }//GEN-LAST:event_jButton2MouseClicked
 

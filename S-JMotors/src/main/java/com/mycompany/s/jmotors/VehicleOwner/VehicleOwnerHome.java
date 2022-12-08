@@ -4,14 +4,15 @@
  */
 package com.mycompany.s.jmotors.VehicleOwner;
 
-import com.mycompany.s.jmotors.Admin.Admin;
-import com.mycompany.s.jmotors.Admin.Admincontrols;
+import com.mycompany.s.jmotors.FactoryClass;
+import com.mycompany.s.jmotors.Login.LoginForm;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,7 +26,6 @@ public class VehicleOwnerHome extends javax.swing.JFrame {
     static String password;
     static String phoneno;
     static String outletID;
-    static String status;
     
     VehicleOwner vo;
     Connection vohcon;
@@ -91,6 +91,11 @@ public class VehicleOwnerHome extends javax.swing.JFrame {
 
         jButton4.setFont(new java.awt.Font("Segoe UI Semibold", 2, 24)); // NOI18N
         jButton4.setText("Log Out");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -119,7 +124,7 @@ public class VehicleOwnerHome extends javax.swing.JFrame {
         this.vohcon = con;
     }
     
-    public void setOwnerUsername(String username)
+    public boolean setOwnerUsername(String username)
     {
         String query = "SELECT id,name,username,phoneno,outletID,password FROM vehicleowner WHERE username = ?";
         
@@ -132,41 +137,59 @@ public class VehicleOwnerHome extends javax.swing.JFrame {
                  
                 while(rs.next())
                 {
-                    VehicleOwnerHome.ownerID = rs.getString("id");
-                    VehicleOwnerHome.name = rs.getString("name");
-                    VehicleOwnerHome.username = rs.getString("username");
-                    VehicleOwnerHome.phoneno = rs.getString("phoneno");
-                    VehicleOwnerHome.password = rs.getString("password");
-                    VehicleOwnerHome.status = rs.getString("status");
-                    VehicleOwnerHome.outletID = rs.getString("outletID");                   
+                    ownerID = rs.getString("id");
+                    name = rs.getString("name");
+                    phoneno = rs.getString("phoneno");
+                    password = rs.getString("password");
+                    outletID = rs.getString("outletID");                   
                 }
                 
+                FactoryClass f = new FactoryClass();
+                vo = f.getVehicleOwner();
                 vo.setOwner(ownerID, name, username, password, phoneno, outletID);
+                
+                return true;
                 
           } catch (SQLException ex) {
             Logger.getLogger(VehicleOwnerHome.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return false;
+    }
+    
+    public void setOwner(VehicleOwner vo)
+    {
+        this.vo = vo;
     }
     
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
 
         BookAppointment BA = new BookAppointment();
-        BA.setConnection(vohcon);
+        BA.setConnection(vohcon);  
         BA.setOwner(vo);
         BA.setVisible(true);
         setVisible(false);
-
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
 
         MakePayemet mp = new MakePayemet();
         mp.getpayment(vohcon);
+        mp.setOwner(vo);
         mp.setVisible(true);
         setVisible(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        // TODO add your handling code here:
+        
+         LoginForm login = new LoginForm();
+         login.setConnection(vohcon);
+        login.setVisible(true);
+        setVisible(false);
+        
+    }//GEN-LAST:event_jButton4MouseClicked
 
     /**
      * @param args the command line arguments

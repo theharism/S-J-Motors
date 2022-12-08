@@ -24,9 +24,6 @@ public class VehicleOwner extends Person {
     
     String ownerID;
     
-    List<Appointment> AppointmentList;
-    List<Vehicle> VehiclesList;
-    
     public VehicleOwner()
     {
             ownerID="";
@@ -36,6 +33,16 @@ public class VehicleOwner extends Person {
     {
         addPerson(name,username,password,phoneno,outletID);
         this.ownerID  = ownerID;
+    }
+    
+    public String getOwnerPhoneno()
+    {
+        return getPhoneno();
+    }
+    
+    public String getOwnerName()
+    {
+        return getName();
     }
     
     public void setUnregisteredOwner(String ownerID, String name, String phoneno,String outletID,Connection con)

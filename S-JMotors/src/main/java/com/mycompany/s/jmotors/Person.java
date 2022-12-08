@@ -42,4 +42,7 @@ public class Person {
         this.phoneno = phoneno;
         this.outletID = outletID;
     }
+    
+    public String getPhoneno(){return phoneno;};
+    public String getName(){return name;};
 }

@@ -4,25 +4,21 @@
  */
 package com.mycompany.s.jmotors.FloorManager;
 
+import com.mycompany.s.jmotors.FactoryClass;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author DELL
  */
 public class RemoveEmployee extends javax.swing.JFrame {
-Connection removempol;
+Connection removempol; //connection variable //
     /**
      * Creates new form RemoveEmployee
      */
     public RemoveEmployee() {
         initComponents();
+        
+        setExtendedState(RemoveEmployee.MAXIMIZED_BOTH);
     }
 
     /**
@@ -125,7 +121,7 @@ Connection removempol;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void getremoveemploye(Connection con)
+    public void getremoveemploye(Connection con) // function to connection pages //
     {
         this.removempol=con;
     }
@@ -134,53 +130,26 @@ Connection removempol;
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-        String query = "select Username from Staff where ID = ?";
-        String query1="DELETE FROM Staff WHERE ID = ? ";
-        String ID=jTextField1.getText();
-        PreparedStatement pdt;
-        PreparedStatement pdt2;
-        String Username="";
+        // function to remove an employee//
+       
+        String ID=jTextField1.getText(); //getting employe ID from user//
         
-        try
-        {
-            
-            pdt = removempol.prepareStatement(query);
-            pdt2=removempol.prepareStatement(query1);
-            
-            pdt.setString(1, ID);
-            ResultSet rn=pdt.executeQuery();
-            
-           
-            while(rn.next())
-            {
-             Username=rn.getString("Username");
-            }
-            if(Username.equals(""))
-            {
-                JOptionPane.showMessageDialog(null, "Username not found");
-            }
-            else{
-                 JOptionPane.showMessageDialog(null, "deleted successfully");
-                 pdt2.setString(1,ID);
-                 pdt2.executeUpdate();
-            
-            }
-        jTextField1.setText("");
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(AddEmployee.class.getName()).log(Level.SEVERE, null, ex);
-        }
+         FactoryClass fc = new FactoryClass(); //implememtg Factory design patterns //
         
+        FloorManager addemployee = fc.getFloorManger(); // factory class returning floor manager object//
         
+        addemployee.removeemployee(ID,removempol); //  class function to implement emove employee
+         jTextField1.setText(""); // removing Uswr input from the text box///
     }//GEN-LAST:event_jButton1MouseClicked
 
+
+//back button function implementation ..
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        // TODO add your handling code here:
-        FMControls rm = new FMControls();
+        
+        FMControls rm = new FMControls();// jis page pr jana h //
         rm.getfmcontrol((removempol));
         rm.setVisible(true);
-        setVisible(false);
+        setVisible(false);// present page blank//
         
     }//GEN-LAST:event_jButton2MouseClicked
 

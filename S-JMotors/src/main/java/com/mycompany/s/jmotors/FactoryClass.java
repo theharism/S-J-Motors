@@ -5,7 +5,10 @@
 package com.mycompany.s.jmotors;
 
 import com.mycompany.s.jmotors.Admin.Admin;
+import com.mycompany.s.jmotors.FloorManager.FloorManager;
+import com.mycompany.s.jmotors.Staff.Staff;
 import com.mycompany.s.jmotors.VehicleOwner.Appointment;
+import com.mycompany.s.jmotors.VehicleOwner.Payment;
 import com.mycompany.s.jmotors.VehicleOwner.VehicleOwner;
 
 /**
@@ -21,7 +24,8 @@ public class FactoryClass {
     
     public Admin getAdmin()
     {
-        return new Admin();
+        Admin a = new Admin();
+        return a;
     }
     
     public Appointment getAppointment()
@@ -29,4 +33,18 @@ public class FactoryClass {
         return new Appointment();
     }
     
+    public Payment getPayment()
+    {
+        return new Payment();
+    }
+    
+    public Staff getStaff()
+    {
+        return new Staff();
+    }
+    
+    public FloorManager getFloorManger()
+    {
+        return new FloorManager();
+    }
 }

@@ -4,12 +4,8 @@
  */
 package com.mycompany.s.jmotors.FloorManager;
 
-import com.mycompany.s.jmotors.Staff.Staff;
+import com.mycompany.s.jmotors.FactoryClass;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -20,9 +16,11 @@ public class AddEmployee extends javax.swing.JFrame {
     /**
      * Creates new form AddEmployee
      */
-    Connection addempol;
+    Connection addempol;  // connection variable //
     public AddEmployee() {
         initComponents();
+        
+        setExtendedState(AddEmployee.MAXIMIZED_BOTH);
     }
 
     /**
@@ -218,9 +216,9 @@ public class AddEmployee extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
- public void getemploye(Connection con)
+ public void getemploye(Connection con)  // function to connect pages //
    {
-       this.addempol=con;
+       this.addempol=con; 
    }
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -228,8 +226,10 @@ public class AddEmployee extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        String queery="INSERT INTO `Staff` Values(?,?,?,?,?,?,?,?)";
-        String queery1="INSERT INTO 'login' Values(?,?)";
+        
+        
+       // taking user input //
+       
         String ID=jTextField1.getText();
         String name=jTextField2.getText();
         String username=jTextField3.getText();
@@ -237,27 +237,14 @@ public class AddEmployee extends javax.swing.JFrame {
         String phone=jTextField5.getText();
         String fid=jTextField6.getText();
         String oid=jTextField7.getText();
-        PreparedStatement pdt;
-        PreparedStatement pdt2;
-        Staff staf=new Staff();
-        staf.AddStaff(ID, fid, name, username, password, phone, oid,"x");
-        try
-        {
-            pdt = addempol.prepareStatement(queery);
-            pdt2=addempol.prepareStatement(queery1);
-            pdt.setString(1, ID);
-            pdt.setString(2, name);
-            pdt.setString(3, username);
-            pdt.setString(4, phone);
-            pdt.setString(5, password);
-            pdt.setString(6, "x");
-            pdt.setString(7, fid);
-            pdt.setString(8, oid);
-            pdt.executeUpdate();
-            pdt2.executeUpdate();
-            
-            
-            
+        
+        FactoryClass fc = new FactoryClass(); // implementing factory class design pattern //
+        
+        FloorManager addemployee = fc.getFloorManger(); // creating new object of floor manager  return from factory class //
+        
+        addemployee.addnewemployee(ID,fid,name,username,password,phone,oid,"x",addempol);//calling class function to add a new employee//
+   
+      // clearing the user input //
         jTextField1.setText("");
         jTextField2.setText("");
         jTextField3.setText("");
@@ -265,12 +252,6 @@ public class AddEmployee extends javax.swing.JFrame {
         jTextField5.setText("");
         jTextField6.setText("");
         jTextField7.setText("");
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(AddEmployee.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
         
         
         

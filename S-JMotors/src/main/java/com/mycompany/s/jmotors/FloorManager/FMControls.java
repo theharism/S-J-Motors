@@ -4,9 +4,7 @@
  */
 package com.mycompany.s.jmotors.FloorManager;
 
-import com.mycompany.s.jmotors.FloorManager.AddEmployee;
-import com.mycompany.s.jmotors.FloorManager.AssignTask;
-import com.mycompany.s.jmotors.FloorManager.RemoveEmployee;
+import com.mycompany.s.jmotors.Login.LoginForm;
 import java.sql.Connection;
 
 /**
@@ -91,6 +89,11 @@ public class FMControls extends javax.swing.JFrame {
 
         jButton4.setFont(new java.awt.Font("Segoe UI Semibold", 2, 24)); // NOI18N
         jButton4.setText("Log Out");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -99,8 +102,6 @@ public class FMControls extends javax.swing.JFrame {
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, 211, 46));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, -1, 440));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\theharism\\Desktop\\S-JMotors\\hL1kMq (8).jpg")); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 710));
 
         pack();
@@ -145,6 +146,15 @@ public class FMControls extends javax.swing.JFrame {
         ass.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        // TODO add your handling code here:
+         LoginForm form =new LoginForm();
+        form.loginpagecon(fm);
+        form.setVisible(true);
+        setVisible(false);
+
+    }//GEN-LAST:event_jButton4MouseClicked
 
     /**
      * @param args the command line arguments

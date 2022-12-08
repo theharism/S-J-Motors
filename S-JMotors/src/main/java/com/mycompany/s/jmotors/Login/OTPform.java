@@ -16,7 +16,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -42,8 +41,8 @@ public class OTPform extends javax.swing.JFrame {
         setExtendedState(OTPform.MAXIMIZED_BOTH);
         
         jLabel7.setVisible(false);
-        jTextField2.setVisible(false);
-        jButton1.setVisible(false);
+        OTPfield.setVisible(false);
+        verifyOTPbutton.setVisible(false);
     }
 
     /**
@@ -60,16 +59,16 @@ public class OTPform extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        verifyOTPbutton = new javax.swing.JButton();
+        NameField = new javax.swing.JTextField();
+        BacktoLogin = new javax.swing.JLabel();
+        sendOTPbutton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        OTPfield = new javax.swing.JTextField();
+        MobilenoField = new javax.swing.JTextField();
+        UsernameField = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        PasswordField = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -100,31 +99,31 @@ public class OTPform extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Mobile no");
 
-        jButton1.setText("Verify");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        verifyOTPbutton.setText("Verify");
+        verifyOTPbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                verifyOTPbuttonActionPerformed(evt);
             }
         });
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        NameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                NameFieldActionPerformed(evt);
             }
         });
 
-        jLabel6.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel6.setText("Already have an account? Login instead");
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+        BacktoLogin.setForeground(new java.awt.Color(255, 0, 0));
+        BacktoLogin.setText("Already have an account? Login instead");
+        BacktoLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel6MouseClicked(evt);
+                BacktoLoginMouseClicked(evt);
             }
         });
 
-        jButton2.setText("Send OTP");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        sendOTPbutton.setText("Send OTP");
+        sendOTPbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                sendOTPbuttonActionPerformed(evt);
             }
         });
 
@@ -132,22 +131,22 @@ public class OTPform extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Verify OTP");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        OTPfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                OTPfieldActionPerformed(evt);
             }
         });
 
-        jTextField4.setText("+92");
+        MobilenoField.setText("+92");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        UsernameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                UsernameFieldActionPerformed(evt);
             }
         });
-        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+        UsernameField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField3KeyTyped(evt);
+                UsernameFieldKeyTyped(evt);
             }
         });
 
@@ -155,14 +154,14 @@ public class OTPform extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Username");
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        PasswordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                PasswordFieldActionPerformed(evt);
             }
         });
-        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+        PasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField5KeyTyped(evt);
+                PasswordFieldKeyTyped(evt);
             }
         });
 
@@ -188,30 +187,30 @@ public class OTPform extends javax.swing.JFrame {
                                     .addComponent(jLabel2))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(UsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(14, 14, 14)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6)
+                                .addComponent(BacktoLogin)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel7)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(OTPfield, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(MobilenoField, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(verifyOTPbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sendOTPbutton))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -221,31 +220,31 @@ public class OTPform extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(UsernameField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PasswordField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2))))
+                            .addComponent(MobilenoField, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sendOTPbutton))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(verifyOTPbutton)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(OTPfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
-                .addComponent(jLabel6)
+                .addComponent(BacktoLogin)
                 .addContainerGap())
         );
 
@@ -257,10 +256,10 @@ public class OTPform extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void verifyOTPbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verifyOTPbuttonActionPerformed
         // TODO add your handling code here:
 
-        if(Integer.parseInt(jTextField2.getText()) == 1234)
+        if(Integer.parseInt(OTPfield.getText()) == OTPcode)
         {
             JOptionPane.showMessageDialog(null, "OTP Verified");
             
@@ -278,15 +277,15 @@ public class OTPform extends javax.swing.JFrame {
                 pdt2 = OTPcon.prepareStatement(query2);
                 
                 pdt.setString(1,id);
-                pdt.setString(2,jTextField1.getText());
-                pdt.setString(3,jTextField3.getText());
-                pdt.setString(4,jTextField4.getText());
-                pdt.setString(5,jTextField5.getText());
+                pdt.setString(2,NameField.getText());
+                pdt.setString(3,UsernameField.getText());
+                pdt.setString(4,MobilenoField.getText());
+                pdt.setString(5,PasswordField.getText());
                 pdt.setInt(6, 1);
                 pdt.setString(7,outletID);
                 
-                pdt1.setString(1,jTextField3.getText());
-                pdt1.setString(2,jTextField5.getText());
+                pdt1.setString(1,UsernameField.getText());
+                pdt1.setString(2,PasswordField.getText());
                 pdt1.setString(3,"V");
                 
                 pdt.executeUpdate();
@@ -310,25 +309,25 @@ public class OTPform extends javax.swing.JFrame {
         else{
             JOptionPane.showMessageDialog(null, "Wrong OTP Entered");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_verifyOTPbuttonActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void NameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_NameFieldActionPerformed
 
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+    private void BacktoLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BacktoLoginMouseClicked
         // TODO add your handling code here:
 
         LoginForm login = new LoginForm();
         login.setVisible(true);
         setVisible(false);
-    }//GEN-LAST:event_jLabel6MouseClicked
+    }//GEN-LAST:event_BacktoLoginMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void sendOTPbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendOTPbuttonActionPerformed
         // TODO add your handling code here:
 
         String query = "select id,outletID from unregisteredvehicleowners where phoneno = ?";
-        String phoneno = jTextField4.getText();
+        String phoneno = MobilenoField.getText();
         PreparedStatement pdt;
         boolean flag = false;
         
@@ -353,53 +352,53 @@ public class OTPform extends javax.swing.JFrame {
         
         if(flag)
         {
-//            Random rand = new Random();
-//            OTPcode = rand.nextInt(999999);
-//        
-//            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-//            Message message = Message.creator(
-//                new com.twilio.type.PhoneNumber(jTextField4.getText()),
-//                new com.twilio.type.PhoneNumber("+19377499379"),
-//                "Hi " + jTextField1.getText() + ", your OTP is: " + OTPcode)
-//            .create();
+            Random rand = new Random();
+            OTPcode = rand.nextInt(999999);
+        
+            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+            Message message = Message.creator(
+                new com.twilio.type.PhoneNumber(MobilenoField.getText()),
+                new com.twilio.type.PhoneNumber("+19377499379"),
+                "Hi " + NameField.getText() + ", your OTP is: " + OTPcode)
+            .create();
         
             JOptionPane.showMessageDialog(null, "OTP Sent Successfully");
         
             jLabel7.setVisible(true);
-            jTextField2.setVisible(true);
-            jButton1.setVisible(true);    
+            OTPfield.setVisible(true);
+            verifyOTPbutton.setVisible(true);    
         }
         else
         {
             JOptionPane.showMessageDialog(null, "You are not Registered in our system. Contact S&J Motors for help");
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_sendOTPbuttonActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void OTPfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OTPfieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_OTPfieldActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void UsernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsernameFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_UsernameFieldActionPerformed
 
     public void setConnection(Connection con)
     {
         this.OTPcon = con;
     }
     
-    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+    private void UsernameFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UsernameFieldKeyTyped
       
         
-    }//GEN-LAST:event_jTextField3KeyTyped
+    }//GEN-LAST:event_UsernameFieldKeyTyped
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void PasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_PasswordFieldActionPerformed
 
-    private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
+    private void PasswordFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PasswordFieldKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5KeyTyped
+    }//GEN-LAST:event_PasswordFieldKeyTyped
 
     /**
      * @param args the command line arguments
@@ -437,22 +436,22 @@ public class OTPform extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel BacktoLogin;
+    private javax.swing.JTextField MobilenoField;
+    private javax.swing.JTextField NameField;
+    private javax.swing.JTextField OTPfield;
+    private javax.swing.JTextField PasswordField;
+    private javax.swing.JTextField UsernameField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JButton sendOTPbutton;
+    private javax.swing.JButton verifyOTPbutton;
     // End of variables declaration//GEN-END:variables
 }
