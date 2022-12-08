@@ -19,6 +19,18 @@ public class Admin extends Person {
         this.adminID  = "";
     }
     
+    private static Admin admin;
+
+    public static Admin getInstance()
+    {
+        if(admin == null)
+        {
+            admin = new Admin();
+        }
+        
+        return admin;
+    }
+    
     public String getID()
     {
         return adminID;

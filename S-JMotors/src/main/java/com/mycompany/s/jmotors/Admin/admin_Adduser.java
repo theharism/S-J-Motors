@@ -7,10 +7,6 @@ package com.mycompany.s.jmotors.Admin;
 import com.mycompany.s.jmotors.FactoryClass;
 import com.mycompany.s.jmotors.VehicleOwner.VehicleOwner;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
